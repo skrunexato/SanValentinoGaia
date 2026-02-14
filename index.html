@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 Buon San Valentino! 💝</title>
+    <style>
+        :root {
+            --color-bg-base: #0f172a;
+            --color-bg-elevated: #1e293b;
+            --color-text-primary: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-primary: #ff00ff;
+            --color-primary-hover: #d600d6;
+            --color-accent: #ff1493;
+            --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background: linear-gradient(135deg, #1a0b2e 0%, #3d1f5c 50%, #6b2d8a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            animation: fadeInScale 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ffffff, #ffc0ff, #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 192, 255, 0.4);
+            animation: shimmer 3s ease-in-out infinite;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-yes {
+            background: rgba(255, 105, 180, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(255, 105, 180, 0.5);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 105, 180, 0.35);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-no:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-surprise {
+            background: rgba(218, 112, 214, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(218, 112, 214, 0.5);
+        }
+
+        .btn-surprise:hover {
+            transform: translateY(-2px);
+            background: rgba(218, 112, 214, 0.35);
+            box-shadow: 0 8px 25px rgba(218, 112, 214, 0.6);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #specialMessage {
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-weight: 400;
+            padding: 1.5rem;
+            background: rgba(218, 112, 214, 0.15);
+            border-radius: 15px;
+            margin-top: 1rem;
+            border: 1px solid rgba(218, 112, 214, 0.4);
+            animation: slideInUp 0.5s ease-out;
+            letter-spacing: 1px;
+            overflow: hidden;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: float-up 4s linear forwards;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--color-primary);
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .emoji-rain {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: emoji-fall 5s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes emoji-fall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .message {
+                font-size: 1.2rem;
+            }
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-bg" id="heartsBg"></div>
+    
+    <div class="container">
+        <div class="card">
+            <h1>💝 Buon San Valentino! 💝</h1>
+            
+            <div id="mainContent">
+                <p class="message">
+                    Oggi è un giorno speciale! ✨<br>
+                    Preparati per una questa super mega esperienza... 💕
+                </p>
+                
+                <div class="btn-container">
+                    <button class="btn btn-yes" onclick="showLove()">❤️ Clicca qui se vuoi un'anteprima!</button>
+                    <button class="btn btn-no" onclick="noWay()">🤔 Clicca qui se non sei non vuoi avere anteprime</button>
+                    <!--<button class="btn btn-surprise" onclick="createConfetti()">🎉 Sorpresa!</button>-->
+                </div>
+            </div>
+
+            <div id="specialMessage" class="hidden">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Three.js CDN
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+        script.onload = init3D;
+        document.head.appendChild(script);
+
+        const loveMessages = [
+            "Sei speciale! 💖",
+            "Ogni giorno con te è San Valentino! 🌹",
+            "Il mio cuore batte solo per te! 💓",
+            "Sei la persona più bella che conosco! ✨",
+            "Ti voglio bene da morire! 💕",
+            "Grazie per esistere! 🥰",
+            "Sei il regalo più bello! 🎁"
+        ];
+
+        const noMessages = [
+            "Dai, prova ancora! 😊",
+            "Sono sicuro che cambierai idea! 💭",
+            "Almeno prova la sorpresa! 🎈",
+            "Non essere timido/a! 🙈"
+        ];
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💓', '💝'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function createBackgroundHearts() {
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    createFloatingHeart();
+                }
+            }, 500);
+        }
+
+        function showLove() {
+            const specialMsg = document.getElementById('specialMessage');
+            
+            // Mostra immagine invece del messaggio
+            specialMsg.innerHTML = '<img src="images/volevi.jpg" alt="Sorpresa!" style="max-width: 100%; border-radius: 15px; margin-top: 1rem; box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);"> <h3 style="color: #ffffff;">EH VOLEVI</h3>';
+            specialMsg.classList.remove('hidden');
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createFloatingHeart(), i * 100);
+            }
+            
+            setTimeout(() => createEmojiRain(), 500);
+        }
+
+        function noWay() {
+            //const message = noMessages[Math.floor(Math.random() * noMessages.length)];
+            const message = "Peggio per te non sai che ti perdi!"
+            const specialMsg = document.getElementById('specialMessage');
+            specialMsg.textContent = message;
+            specialMsg.style.color = 'rgba(255, 255, 255, 0.7)';
+            specialMsg.style.background = 'rgba(255, 255, 255, 0.05)';
+            specialMsg.classList.remove('hidden');
+            
+            setTimeout(() => {
+                specialMsg.style.color = '#ffffff';
+                specialMsg.style.background = 'rgba(218, 112, 214, 0.15)';
+            }, 2000);
+        }
+
+        function createConfetti() {
+            const colors = ['#ff00ff', '#d600d6', '#ff1493', '#ff69b4', '#da70d6', '#ba55d3'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 20);
+            }
+            
+            const specialMsg = document.getElementById('specialMessage');
+            specialMsg.textContent = "💜 Esplosione di fucsia! 💜";
+            specialMsg.style.color = '#ffffff';
+            specialMsg.style.background = 'rgba(218, 112, 214, 0.15)';
+            specialMsg.classList.remove('hidden');
+        }
+
+        function createEmojiRain() {
+            const emojis = ['🌹', '💐', '🌺', '🌸', '🌷', '🌻', '🎀', '💍', '🍫', '🍰'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-rain';
+                    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.top = '-50px';
+                    document.body.appendChild(emoji);
+                    
+                    setTimeout(() => emoji.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        createBackgroundHearts();
+
+        function init3D() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.domElement.style.position = 'fixed';
+            renderer.domElement.style.top = '0';
+            renderer.domElement.style.left = '0';
+            renderer.domElement.style.zIndex = '2';
+            renderer.domElement.style.pointerEvents = 'none';
+            document.body.insertBefore(renderer.domElement, document.body.firstChild);
+            
+            camera.position.z = 5;
+            
+            // Crea cuori 3D
+            const hearts3D = [];
+            
+            function createHeart3D() {
+                const heartShape = new THREE.Shape();
+                heartShape.moveTo(0, 0);
+                heartShape.bezierCurveTo(0, -0.3, -0.6, -0.3, -0.6, 0);
+                heartShape.bezierCurveTo(-0.6, 0.3, 0, 0.6, 0, 1);
+                heartShape.bezierCurveTo(0, 0.6, 0.6, 0.3, 0.6, 0);
+                heartShape.bezierCurveTo(0.6, -0.3, 0, -0.3, 0, 0);
+                
+                const extrudeSettings = {
+                    depth: 0.3,
+                    bevelEnabled: true,
+                    bevelThickness: 0.1,
+                    bevelSize: 0.1,
+                    bevelSegments: 3
+                };
+                
+                const geometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: Math.random() > 0.5 ? 0xda70d6 : 0xff69b4,
+                    shininess: 150,
+                    specular: 0xffffff,
+                    emissive: 0xda70d6,
+                    emissiveIntensity: 0.2
+                });
+                
+                const heart = new THREE.Mesh(geometry, material);
+                heart.position.x = (Math.random() - 0.5) * 10;
+                heart.position.y = (Math.random() - 0.5) * 10;
+                heart.position.z = (Math.random() - 0.5) * 10;
+                heart.rotation.z = Math.PI;
+                
+                heart.userData = {
+                    speedX: (Math.random() - 0.5) * 0.02,
+                    speedY: (Math.random() - 0.5) * 0.02,
+                    rotationSpeed: (Math.random() - 0.5) * 0.05
+                };
+                
+                scene.add(heart);
+                hearts3D.push(heart);
+                
+                return heart;
+            }
+            
+            // Aggiungi luci
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const pointLight1 = new THREE.PointLight(0xda70d6, 0.8, 100);
+            pointLight1.position.set(5, 5, 5);
+            scene.add(pointLight1);
+            
+            const pointLight2 = new THREE.PointLight(0xff69b4, 0.7, 100);
+            pointLight2.position.set(-5, -5, 5);
+            scene.add(pointLight2);
+            
+            const pointLight3 = new THREE.PointLight(0xba55d3, 0.5, 100);
+            pointLight3.position.set(0, 0, 10);
+            scene.add(pointLight3);
+            
+            // Crea cuori iniziali
+            for (let i = 0; i < 15; i++) {
+                createHeart3D();
+            }
+            
+            // Animazione
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                hearts3D.forEach(heart => {
+                    heart.rotation.x += heart.userData.rotationSpeed;
+                    heart.rotation.y += heart.userData.rotationSpeed;
+                    
+                    heart.position.x += heart.userData.speedX;
+                    heart.position.y += heart.userData.speedY;
+                    
+                    // Rimbalzo sui bordi
+                    if (Math.abs(heart.position.x) > 5) heart.userData.speedX *= -1;
+                    if (Math.abs(heart.position.y) > 5) heart.userData.speedY *= -1;
+                });
+                
+                // Ruota la scena
+                scene.rotation.y += 0.001;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Responsive
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Aggiungi cuore 3D al click
+            window.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON') {
+                    createHeart3D();
+                    if (hearts3D.length > 25) {
+                        const oldHeart = hearts3D.shift();
+                        scene.remove(oldHeart);
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💕';
+                heart.style.left = e.pageX + 'px';
+                heart.style.top = e.pageY + 'px';
+                heart.style.fontSize = '1rem';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 4000);
+            }
+        });
+    </script>
+</body>
+</html>
