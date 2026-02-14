@@ -285,8 +285,8 @@
                 </p>
                 
                 <div class="btn-container">
-                    <button class="btn btn-yes" onclick="showLove()">❤️ Clicca qui se vuoi un'anteprima!</button>
-                    <button class="btn btn-no" onclick="noWay()">🤔 Clicca qui se non sei non vuoi avere anteprime</button>
+                    <button class="btn btn-yes" onclick="showLove()">❤️ Clicca qui se vuoi sapere cosa ti aspetta!</button>
+                    <button class="btn btn-no" onclick="noWay()">🤔 Clicca qui se non ne vuoi sapere nulla.</button>
                     <!--<button class="btn btn-surprise" onclick="createConfetti()">🎉 Sorpresa!</button>-->
                 </div>
             </div>
@@ -344,7 +344,7 @@
             const specialMsg = document.getElementById('specialMessage');
             
             // Mostra immagine invece del messaggio
-            specialMsg.innerHTML = '<img src="images/volevi.jpg" alt="Sorpresa!" style="max-width: 100%; border-radius: 15px; margin-top: 1rem; box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);"> <h3 style="color: #ffffff;">EH VOLEVI</h3>';
+            specialMsg.innerHTML = '<h3 style="color: #ffffff;">EH VOLEVI</h3> <img src="images/volevi.jpg" alt="Sorpresa!" style="max-width: 100%; border-radius: 15px; margin-top: 1rem; box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);"> ';
             specialMsg.classList.remove('hidden');
             
             for (let i = 0; i < 20; i++) {
